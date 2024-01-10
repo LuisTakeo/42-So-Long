@@ -18,14 +18,15 @@ libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 %.o: %.c
-	@$(CC) $(FLAGS) -o $@ -c $< $(INCLUDES) && printf "Compilando: $(notdir $<)"
+	@$(CC) $(FLAGS) -o $@ -c $< $(INCLUDES) && echo "Compilando: $(notdir $<)"
 
 $(NAME): $(OBJS)
+	@echo "Criando arquivo $(NAME)"
 	@$(CC) $(OBJS) $(LIBS) $(INCLUDES) -o $(NAME)
 
 clean:
 	@rm -rf $(OBJS)
-	rm -rf $(LIBMLX)/build
+	@rm -rf $(LIBMLX)/build
 
 fclean: clean
 	@rm -rf $(NAME)

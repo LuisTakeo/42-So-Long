@@ -6,8 +6,13 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:02:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/09 20:02:55 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/09 21:04:06 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include 
+#include "../includes/so_long.h"
+
+int	main(void)
+{
+	return (0);
+}
