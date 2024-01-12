@@ -1,6 +1,7 @@
 NAME = so_long
 NAME_BONUS = so_long_bonus
-LIBMLX = ./libs/MLX42
+LIBS_FOLDER = ./lib
+LIBMLX = $(LIBS_FOLDER)/MLX42
 
 CC = cc
 FLAGS = -Wextra -Wall -Werror -Wunreachable-code -Ofast
@@ -12,6 +13,7 @@ INCLUDES = -I includes -I $(LIBMLX)/include
 OBJS = ${SRC:%.c=%.o}
 
 all: libmlx $(NAME)
+	@echo "Concluido!"
 
 libmlx:
 	@echo "Compilando lib gráfica..."
@@ -22,13 +24,20 @@ libmlx:
 
 $(NAME): $(OBJS)
 	@echo "Criando arquivo $(NAME)"
-	@$(CC) $(OBJS) $(LIBS) $(INCLUDES) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBS) $(INCLUDES) -o $(NAME) $(FLAGSMLX)
 
 clean:
+	@echo "Limpando objects..."
 	@rm -rf $(OBJS)
+	@echo "Feito!"
+	@echo "Limpando build..."
 	@rm -rf $(LIBMLX)/build
+	@echo "Feito!"
+
 
 fclean: clean
+	@echo "Removendo executável..."
 	@rm -rf $(NAME)
+	@echo "Feito!"
 
 .PHONY: all, clean, fclean, re, libmlx
