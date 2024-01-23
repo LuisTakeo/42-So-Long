@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:02:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/21 22:05:07 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:11:12 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,63 @@ static void	ft_error(void)
 // 	ft_printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
 // }
 
+int32_t	is_direction(mlx_t *mlx, keys_t key1, keys_t key2)
+{
+	return (mlx_is_key_down(mlx, key1) || mlx_is_key_down(mlx, key2));
+}
+
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
-	t_img_data	*img_data;
+	t_game	*game;
+	int32_t	i;
+	int32_t move_div;
+	int32_t move_timing;
 
-	img_data = (t_img_data *)param;
-	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-		ft_printf("Key pressed: %c\n", keydata.key);
-	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+	i = 0;
+	move_div = 128;
+	move_timing = WIDTH_TILE / move_div;
+	game = (t_game *)param;
+	if (is_direction(game->mlx, MLX_KEY_A, MLX_KEY_LEFT))
 	{
 		ft_printf("Key pressed: %c\n", keydata.key);
+		while (i < move_div)
+		{
+			game->character_data->img->instances[0].x -= move_timing;
+			i++;
+		}
+
+		// game->character_data->img->instances[0].x -= 128;
 	}
-	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+	if (is_direction(game->mlx, MLX_KEY_S, MLX_KEY_DOWN))
+	{
 		ft_printf("Key pressed: %c\n", keydata.key);
-	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+		while (i < move_div)
+		{
+			game->character_data->img->instances[0].y += move_timing;
+			i++;
+		}
+		// game->character_data->img->instances[0].y += 128;
+	}
+	if (is_direction(game->mlx, MLX_KEY_D, MLX_KEY_RIGHT))
+	{
 		ft_printf("Key pressed: %c\n", keydata.key);
-	if (img_data)
-		return ;
+		while (i < move_div)
+		{
+			game->character_data->img->instances[0].x += move_timing;
+			i++;
+		}
+		// game->character_data->img->instances[0].x += 128;
+	}
+	if (is_direction(game->mlx, MLX_KEY_W, MLX_KEY_UP))
+	{
+		ft_printf("Key pressed: %c\n", keydata.key);
+		while (i < move_div)
+		{
+			game->character_data->img->instances[0].y -= move_timing;
+			i++;
+		}
+		// game->character_data->img->instances[0].y -= 128;
+	}
 }
 
 // teste de loop para animações no bonus
@@ -61,35 +101,42 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 // 	ft_printf("%d \n", *it);
 // }
 
+t_img_data	*insert_img_data(t_game *game, char *img_path)
+{
+	t_img_data	*game_img;
+
+	game_img = ft_calloc(sizeof (t_img_data), 1);
+	if (!game_img)
+		ft_error();
+	game_img->texture = mlx_load_png(img_path);
+	if (!(game_img->texture))
+		ft_error();
+	game_img->img = mlx_texture_to_image(game->mlx, game_img->texture);
+	if (!game_img->img)
+		ft_error();
+	return (game_img);
+}
+
 int32_t	main(void)
 {
 	t_game	game;
 	// mlx_t	*mlx;
-	t_img_data	game_img;
 	// int32_t			i;
 
 	// i = 0;
 	game.mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
 	if (!game.mlx)
 		ft_error();
-	game_img.texture = mlx_load_png("./src/img/chopper_L.png");
-	if (!(game_img.texture))
+	game.character_data = insert_img_data(&game, "./src/img/chopper_L.png");
+	if (mlx_image_to_window(game.mlx, game.character_data->img,
+			WIDTH_TILE * 0, HEIGHT_TILE * 0) < 0)
 		ft_error();
-	ft_printf("Width: %d\nHeight: %d\n", game_img.texture->width, game_img.texture->height);
-	game_img.img = mlx_texture_to_image(game.mlx, game_img.texture);
-	if (!game_img.img || (mlx_image_to_window(game.mlx, game_img.img, WIDTH_TILE * 0, HEIGHT_TILE * 0) < 0))
-		ft_error();
-	// if (!img || (mlx_image_to_window(mlx, img, 0, 128) < 0))
-	// 	ft_error();
-	// if (!img || (mlx_image_to_window(mlx, img, 5000, 0) < 0))
-	// 	ft_error();
-	// if (!img || (mlx_image_to_window(mlx, img, 128, 128) < 0))
-	// 	ft_error();
-	mlx_key_hook(game.mlx, &my_keyhook, &game_img);
+	mlx_key_hook(game.mlx, &my_keyhook, &game);
 	// mlx_loop_hook(mlx, &ft_count_loop, &i);
 	mlx_loop(game.mlx);
-	mlx_delete_image(game.mlx, game_img.img);
-	mlx_delete_texture(game_img.texture);
+	mlx_delete_image(game.mlx, game.character_data->img);
+	mlx_delete_texture(game.character_data->texture);
+	free(game.character_data);
 	mlx_terminate(game.mlx);
 	return (EXIT_SUCCESS);
 }
