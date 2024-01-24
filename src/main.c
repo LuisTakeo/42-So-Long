@@ -6,23 +6,22 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:02:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/23 21:31:22 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:37:04 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include "MLX42/MLX42.h"
-#define WIDTH 256
-#define HEIGHT 256
+
 
 // Exit the program as failure.
-static void	ft_error(void)
+void	ft_error(void)
 {
 	ft_printf("%s", mlx_strerror(mlx_errno));
 	exit(EXIT_FAILURE);
 }
 
-static void	delete_img_data(t_game *game, t_img_data *img_data)
+void	delete_img_data(t_game *game, t_img_data *img_data)
 {
 	mlx_delete_image(game->mlx, img_data->img);
 	mlx_delete_texture(img_data->texture);
@@ -37,52 +36,9 @@ static void	delete_img_data(t_game *game, t_img_data *img_data)
 // 	ft_printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
 // }
 
-int32_t	is_direction(mlx_t *mlx, keys_t key1, keys_t key2)
-{
-	return (mlx_is_key_down(mlx, key1) || mlx_is_key_down(mlx, key2));
-}
 
-// int32_t	verify_char_pos(t_game *game)
-// {
-// 	if (game->character_data[1]->img->enabled)
-// 		return (1);
-// 	return (0);
-// }
 
-void	my_keyhook(mlx_key_data_t keydata, void *param)
-{
-	t_game	*game;
 
-	game = (t_game *)param;
-	if (is_direction(game->mlx, MLX_KEY_A, MLX_KEY_LEFT))
-	{
-		ft_printf("Key pressed: %c\n", keydata.key);
-		game->character_data[0]->img->instances[0].x -= WIDTH_TILE;
-		game->character_data[1]->img->instances[0].x -= WIDTH_TILE;
-		game->character_data[0]->img->enabled = 0;
-		game->character_data[1]->img->enabled = 1;
-	}
-	if (is_direction(game->mlx, MLX_KEY_S, MLX_KEY_DOWN))
-	{
-		ft_printf("Key pressed: %c\n", keydata.key);
-		game->character_data[0]->img->instances[0].y += HEIGHT_TILE;
-		game->character_data[1]->img->instances[0].y += HEIGHT_TILE;
-	}
-	if (is_direction(game->mlx, MLX_KEY_D, MLX_KEY_RIGHT))
-	{
-		ft_printf("Key pressed: %c\n", keydata.key);
-		game->character_data[0]->img->instances[0].x += WIDTH_TILE;
-		game->character_data[1]->img->instances[0].x += WIDTH_TILE;
-		game->character_data[0]->img->enabled = 1;
-		game->character_data[1]->img->enabled = 0;
-	}
-	if (is_direction(game->mlx, MLX_KEY_W, MLX_KEY_UP))
-	{
-		ft_printf("Key pressed: %c\n", keydata.key);
-		game->character_data[0]->img->instances[0].y -= HEIGHT_TILE;
-		game->character_data[1]->img->instances[0].y -= HEIGHT_TILE;
-	}
-}
 
 // teste de loop para animações no bonus
 // void	ft_count_loop(void *i)
@@ -112,19 +68,60 @@ t_img_data	*insert_img_data(t_game *game, char *img_path)
 	return (game_img);
 }
 
+// int32_t	count_lines(char *file)
+// {
+// 	int32_t	fd;
+// 	int32_t	height;
+// 	char	*line;
+
+// 	fd = open(file, O_RDONLY);
+// 	line = get_next_line(fd);
+
+// 	close(fd);
+// }
+
+char	**read_file(char *file)
+{
+	char	**arr_map;
+	char	*line;
+	int32_t	fd;
+
+	arr_map = NULL;
+	fd = open(file, O_RDONLY);
+	if (fd <= 0)
+		ft_error();
+	line = get_next_line(fd);
+	while (line)
+	{
+		ft_printf("Colunas: %d", ft_printf("%s", line));
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (arr_map);
+}
+
 int32_t	main(void)
 {
 	t_game	game;
 	// mlx_t	*mlx;
-	int32_t			i;
+	int32_t	i;
+	char	*file;
+	char	**map;
 
+	file = ft_strdup("./src/maps/map.ber");
+	map = read_file(file);
+	free(file);
 	i = 0;
+	// init game
 	game.mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
 	if (!game.mlx)
 		ft_error();
+	// init images
 	game.character_data[0] = insert_img_data(&game, "./src/img/chopper_R.png");
 	game.character_data[1] = insert_img_data(&game, "./src/img/chopper_L.png");
 	game.wall_data = insert_img_data(&game, "./src/img/water.png");
+	game.character_moves = 0;
+	// insert images to window
 	while (i < 10)
 	{
 		if (mlx_image_to_window(game.mlx, game.wall_data->img,
@@ -133,17 +130,21 @@ int32_t	main(void)
 		i++;
 	}
 	if ((mlx_image_to_window(game.mlx, game.character_data[0]->img,
-				WIDTH_TILE * 4, HEIGHT_TILE * 0) < 0)
+				WIDTH_TILE * 2, HEIGHT_TILE * 0) < 0)
 		|| mlx_image_to_window(game.mlx, game.character_data[1]->img,
-			WIDTH_TILE * 4, HEIGHT_TILE * 0) < 0)
+			WIDTH_TILE * 2, HEIGHT_TILE * 0) < 0)
 		ft_error();
-	game.character_data[1]->img->enabled = 0;
-	mlx_key_hook(game.mlx, &my_keyhook, &game);
+	game.character_data[0]->img->enabled = 0;
+	mlx_key_hook(game.mlx, &listen_moves, &game);
 	// mlx_loop_hook(mlx, &ft_count_loop, &i);
 	mlx_loop(game.mlx);
 	delete_img_data(&game, game.character_data[0]);
 	delete_img_data(&game, game.character_data[1]);
 	delete_img_data(&game, game.wall_data);
 	mlx_terminate(game.mlx);
+	i = 0;
+	// while (map[i])
+	// 	free(map[i++]);
+	// free(map);
 	return (EXIT_SUCCESS);
 }

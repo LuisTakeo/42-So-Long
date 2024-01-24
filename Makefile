@@ -10,7 +10,8 @@ FLAGSOMLX = -Wunreachable-code -Ofast
 LIBS = $(LIBMLX)/build/libmlx42.a $(LIBFT)/libft.a
 FLAGSMLX = -ldl -lglfw -pthread -lm
 
-SRC = ./src/main.c
+SRC = ./src/main.c \
+	 ./src/hooks.c
 INCLUDES = -I includes -I $(LIBMLX)/include -I $(LIBFT)/libft.h -I $(LIBFT)/gnl/includes -I $(LIBFT)/ft_printf/includes
 OBJS = ${SRC:%.c=%.o}
 
