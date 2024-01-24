@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:02:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/23 19:11:12 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/23 21:31:22 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ static void	ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
+static void	delete_img_data(t_game *game, t_img_data *img_data)
+{
+	mlx_delete_image(game->mlx, img_data->img);
+	mlx_delete_texture(img_data->texture);
+	free(img_data);
+}
+
 // Print the window width and height.
 // static void	ft_hook(void *param)
 // {
@@ -35,57 +42,45 @@ int32_t	is_direction(mlx_t *mlx, keys_t key1, keys_t key2)
 	return (mlx_is_key_down(mlx, key1) || mlx_is_key_down(mlx, key2));
 }
 
+// int32_t	verify_char_pos(t_game *game)
+// {
+// 	if (game->character_data[1]->img->enabled)
+// 		return (1);
+// 	return (0);
+// }
+
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
-	int32_t	i;
-	int32_t move_div;
-	int32_t move_timing;
 
-	i = 0;
-	move_div = 128;
-	move_timing = WIDTH_TILE / move_div;
 	game = (t_game *)param;
 	if (is_direction(game->mlx, MLX_KEY_A, MLX_KEY_LEFT))
 	{
 		ft_printf("Key pressed: %c\n", keydata.key);
-		while (i < move_div)
-		{
-			game->character_data->img->instances[0].x -= move_timing;
-			i++;
-		}
-
-		// game->character_data->img->instances[0].x -= 128;
+		game->character_data[0]->img->instances[0].x -= WIDTH_TILE;
+		game->character_data[1]->img->instances[0].x -= WIDTH_TILE;
+		game->character_data[0]->img->enabled = 0;
+		game->character_data[1]->img->enabled = 1;
 	}
 	if (is_direction(game->mlx, MLX_KEY_S, MLX_KEY_DOWN))
 	{
 		ft_printf("Key pressed: %c\n", keydata.key);
-		while (i < move_div)
-		{
-			game->character_data->img->instances[0].y += move_timing;
-			i++;
-		}
-		// game->character_data->img->instances[0].y += 128;
+		game->character_data[0]->img->instances[0].y += HEIGHT_TILE;
+		game->character_data[1]->img->instances[0].y += HEIGHT_TILE;
 	}
 	if (is_direction(game->mlx, MLX_KEY_D, MLX_KEY_RIGHT))
 	{
 		ft_printf("Key pressed: %c\n", keydata.key);
-		while (i < move_div)
-		{
-			game->character_data->img->instances[0].x += move_timing;
-			i++;
-		}
-		// game->character_data->img->instances[0].x += 128;
+		game->character_data[0]->img->instances[0].x += WIDTH_TILE;
+		game->character_data[1]->img->instances[0].x += WIDTH_TILE;
+		game->character_data[0]->img->enabled = 1;
+		game->character_data[1]->img->enabled = 0;
 	}
 	if (is_direction(game->mlx, MLX_KEY_W, MLX_KEY_UP))
 	{
 		ft_printf("Key pressed: %c\n", keydata.key);
-		while (i < move_div)
-		{
-			game->character_data->img->instances[0].y -= move_timing;
-			i++;
-		}
-		// game->character_data->img->instances[0].y -= 128;
+		game->character_data[0]->img->instances[0].y -= HEIGHT_TILE;
+		game->character_data[1]->img->instances[0].y -= HEIGHT_TILE;
 	}
 }
 
@@ -121,22 +116,34 @@ int32_t	main(void)
 {
 	t_game	game;
 	// mlx_t	*mlx;
-	// int32_t			i;
+	int32_t			i;
 
-	// i = 0;
+	i = 0;
 	game.mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
 	if (!game.mlx)
 		ft_error();
-	game.character_data = insert_img_data(&game, "./src/img/chopper_L.png");
-	if (mlx_image_to_window(game.mlx, game.character_data->img,
-			WIDTH_TILE * 0, HEIGHT_TILE * 0) < 0)
+	game.character_data[0] = insert_img_data(&game, "./src/img/chopper_R.png");
+	game.character_data[1] = insert_img_data(&game, "./src/img/chopper_L.png");
+	game.wall_data = insert_img_data(&game, "./src/img/water.png");
+	while (i < 10)
+	{
+		if (mlx_image_to_window(game.mlx, game.wall_data->img,
+				WIDTH_TILE * i, HEIGHT_TILE * 0) < 0)
+			ft_error();
+		i++;
+	}
+	if ((mlx_image_to_window(game.mlx, game.character_data[0]->img,
+				WIDTH_TILE * 4, HEIGHT_TILE * 0) < 0)
+		|| mlx_image_to_window(game.mlx, game.character_data[1]->img,
+			WIDTH_TILE * 4, HEIGHT_TILE * 0) < 0)
 		ft_error();
+	game.character_data[1]->img->enabled = 0;
 	mlx_key_hook(game.mlx, &my_keyhook, &game);
 	// mlx_loop_hook(mlx, &ft_count_loop, &i);
 	mlx_loop(game.mlx);
-	mlx_delete_image(game.mlx, game.character_data->img);
-	mlx_delete_texture(game.character_data->texture);
-	free(game.character_data);
+	delete_img_data(&game, game.character_data[0]);
+	delete_img_data(&game, game.character_data[1]);
+	delete_img_data(&game, game.wall_data);
 	mlx_terminate(game.mlx);
 	return (EXIT_SUCCESS);
 }

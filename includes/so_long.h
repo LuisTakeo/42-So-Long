@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:03:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/21 21:55:17 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/23 21:10:03 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_game
 	mlx_t	*mlx;
 	t_img_data	*wall_data;
 	t_img_data	*floor_data;
-	t_img_data	*character_data;
+	t_img_data	*character_data[2];
 	t_img_data	*collectible_data;
 }	t_game;
 
