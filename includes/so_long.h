@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:03:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/24 18:33:43 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:16:06 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_game
 	int32_t		character_moves;
 }	t_game;
 
-char		**read_file(char *file);
+char		**generate_map(char *file);
 void		listen_moves(mlx_key_data_t keydata, void *param);
 int32_t		is_direction(mlx_key_data_t keydata, keys_t key1, keys_t key2);
 void		move_character(t_game *game, char pos, char operator);

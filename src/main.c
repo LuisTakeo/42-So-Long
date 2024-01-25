@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:02:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/24 18:37:04 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:59:03 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,23 +80,44 @@ t_img_data	*insert_img_data(t_game *game, char *img_path)
 // 	close(fd);
 // }
 
-char	**read_file(char *file)
+
+char	**generate_map(char *file)
 {
 	char	**arr_map;
 	char	*line;
+	t_list	*str_list;
 	int32_t	fd;
+	int32_t	arr_size;
+	int32_t	i;
 
 	arr_map = NULL;
+	str_list = NULL;
 	fd = open(file, O_RDONLY);
 	if (fd <= 0)
 		ft_error();
 	line = get_next_line(fd);
 	while (line)
 	{
-		ft_printf("Colunas: %d", ft_printf("%s", line));
-		free(line);
+		ft_printf("Colunas: %d\n", ft_printf("%s", line));
+		ft_lstadd_back(&str_list, ft_lstnew(line));
 		line = get_next_line(fd);
 	}
+	arr_size = ft_lstsize(str_list);
+	ft_printf("%d\n", arr_size);
+	arr_map = malloc(sizeof(t_list) * (arr_size + 1));
+	i = -1;
+	arr_map[arr_size] = NULL;
+	t_list	*t_temp;
+	while (++i < arr_size)
+	{
+		ft_printf("strlist: %s\n", str_list->content);
+		arr_map[i] = str_list->content;
+		ft_printf("arrmap: %s\n", arr_map[i]);
+		t_temp = str_list;
+		str_list = str_list->next;
+		free(t_temp);
+	}
+	ft_printf("array2 %s$", arr_map[2]);
 	return (arr_map);
 }
 
@@ -109,7 +130,7 @@ int32_t	main(void)
 	char	**map;
 
 	file = ft_strdup("./src/maps/map.ber");
-	map = read_file(file);
+	map = generate_map(file);
 	free(file);
 	i = 0;
 	// init game
