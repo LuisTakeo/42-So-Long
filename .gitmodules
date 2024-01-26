@@ -2,6 +2,6 @@
  path = lib/libft
  url = git@github.com:LuisTakeo/Libft-42.git
 
- [submodule "MLX42"]
+[submodule "MLX42"]
  path = lib/MLX42
  url = https://github.com/codam-coding-college/MLX42.git

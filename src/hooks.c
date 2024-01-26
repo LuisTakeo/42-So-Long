@@ -6,12 +6,11 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:27:01 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/24 18:36:10 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:23:16 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-#include "MLX42/MLX42.h"
 
 int32_t	is_direction(mlx_key_data_t keydata, keys_t key1, keys_t key2)
 {
@@ -69,5 +68,5 @@ void	move_character(t_game *game, char pos, char operator)
 		game->character_data[1]->img->instances[0].y -= WIDTH_TILE;
 	}
 	game->character_moves++;
-	ft_printf("Quantidade de movimentos: %d\n", game->character_moves);
+	ft_printf("Steps: %d\n", game->character_moves);
 }
