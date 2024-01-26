@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:03:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/26 17:40:30 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:32:35 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void		init_map_image(t_game *game);
 // images functions
 t_img_data	*insert_img_data(t_game *game, char *img_path);
 void		delete_img_data(t_game *game, t_img_data *img_data);
+int32_t		img_to_win(t_game *game, mlx_image_t *img, int32_t c, int32_t l);
 // error functions
 void		ft_error(void);
 
