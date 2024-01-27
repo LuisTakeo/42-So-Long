@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:02:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/26 17:41:50 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/26 20:50:31 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	delete_img_data(t_game *game, t_img_data *img_data)
 // 		*it = 0;
 // 	ft_printf("%d \n", *it);
 // }
-// mlx_put_string();
+// mlx_put_string;
 
 int32_t	main(void)
 {
