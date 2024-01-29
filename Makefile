@@ -13,7 +13,8 @@ FLAGSMLX = -ldl -lglfw -pthread -lm
 SRC = ./src/main.c \
 	 ./src/hooks.c \
 	 ./src/generate_map.c \
-	 ./src/init_game.c
+	 ./src/init_game.c \
+	 ./src/img_screen.c
 INCLUDES = -I includes -I $(LIBMLX)/include -I $(LIBFT)/libft.h -I $(LIBFT)/gnl/includes -I $(LIBFT)/ft_printf/includes
 OBJS = ${SRC:%.c=%.o}
 
@@ -50,5 +51,7 @@ fclean: clean
 	@echo "Removendo executável..."
 	@rm -rf $(NAME)
 	@echo "Feito!"
+
+re: fclean all
 
 .PHONY: all, clean, fclean, re, libmlx

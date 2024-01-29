@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:02:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/26 20:50:31 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:29:25 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,16 @@ void	delete_img_data(t_game *game, t_img_data *img_data)
 int32_t	main(void)
 {
 	t_game	game;
-	int32_t	i;
 	char	*file;
 
 	file = ft_strdup("./src/maps/map.ber");
 	game.map = generate_map(file);
 	free(file);
-	i = 0;
 	// init game
-	game.character_moves = 0;
+	game.player_moves = 0;
 	init_game(&game);
-	mlx_key_hook(game.mlx, &listen_moves, &game);
+	finish_game(&game);
 	// mlx_loop_hook(mlx, &ft_count_loop, &i);
-	mlx_loop(game.mlx);
-	delete_img_data(&game, game.character_data[0]);
-	delete_img_data(&game, game.character_data[1]);
-	delete_img_data(&game, game.wall_data);
-	mlx_terminate(game.mlx);
-	i = 0;
 	// while (map[i])
 	// 	free(map[i++]);
 	// free(map);
