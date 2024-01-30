@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:35:15 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/29 19:29:25 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/29 22:26:00 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ t_img_data	*insert_img_data(t_game *game, char *img_path)
 
 void	init_game(t_game *game)
 {
+	ft_printf("\nTa chegando aqui\n");
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
 	if (!game->mlx)
 		ft_error();
 	init_map_image(game);
+	init_exit_image(game);
 	init_player_img(game);
+	game->lst_pos = '0';
 	mlx_key_hook(game->mlx, &listen_moves, game);
 	mlx_loop(game->mlx);
 }
@@ -46,4 +49,5 @@ void	finish_game(t_game *game)
 	delete_img_data(game, game->player_data[1]);
 	delete_img_data(game, game->wall_data);
 	mlx_terminate(game->mlx);
+	exit(MLX_SUCCESS);
 }

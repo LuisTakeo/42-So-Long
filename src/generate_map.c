@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:22:17 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/26 17:31:28 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/29 21:39:44 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	**read_list_to_arr(t_list *str_list)
 	t_list	*t_temp;
 
 	arr_size = ft_lstsize(str_list);
-	arr_map = malloc(sizeof(t_list) * (arr_size + 1));
+
+	arr_map = malloc(sizeof(char *) * (arr_size + 1));
 	i = -1;
 	arr_map[arr_size] = NULL;
 	while (++i < arr_size)
@@ -30,6 +31,7 @@ char	**read_list_to_arr(t_list *str_list)
 		str_list = str_list->next;
 		free(t_temp);
 	}
+	ft_printf("array size: %s\n", arr_map[arr_size]);
 	return (arr_map);
 }
 

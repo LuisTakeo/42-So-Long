@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:39:24 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/29 19:29:25 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/29 22:15:30 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,33 @@ void	upt_player_pos(t_game *game, int32_t l, int32_t c)
 	game->player_pos_x = c;
 	game->player_pos_y = l;
 	ft_printf("Player pos: x-%d y-%d \n", c, l);
+}
+
+void	init_exit_image(t_game *game)
+{
+	int32_t	l;
+	int32_t	c;
+
+	game->exit_data = insert_img_data(game, "./src/img/exit.png");
+	game->exit_data->img->enabled = 0;
+	game->exit_active = 0;
+	l = 0;
+	while (game->map[l])
+	{
+		c = 0;
+		while (game->map[l][c])
+		{
+			if (game->map[l][c] == 'E')
+			{
+				if (img_to_win(game, game->exit_data->img, c, l))
+					ft_error();
+				return ;
+			}
+			c++;
+		}
+		l++;
+	}
+
 }
 
 void	init_player_img(t_game *game)
