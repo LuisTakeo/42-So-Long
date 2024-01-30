@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"get_next_line.h": "c",
-		"so_long.h": "c"
+		"so_long.h": "c",
+		"random": "c"
 	}
 }
