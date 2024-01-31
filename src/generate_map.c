@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:22:17 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/30 16:14:25 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/30 21:08:40 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_list	*read_file_to_list(char *file)
 	str_list = NULL;
 	fd = open(file, O_RDONLY);
 	if (fd <= 0)
-		ft_error();
+		return (NULL);
 	line = get_next_line(fd);
 	if (!line)
 		return (NULL);
@@ -62,6 +62,8 @@ char	**generate_map(char *file)
 	t_list	*str_list;
 
 	str_list = read_file_to_list(file);
+	if (!str_list)
+		return (NULL);
 	arr_map = read_list_to_arr(str_list);
 	return (arr_map);
 }

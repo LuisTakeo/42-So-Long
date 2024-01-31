@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:03:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/30 16:28:29 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/30 20:48:54 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_image_data
 typedef struct s_valid_map
 {
 	int32_t	last_col;
+	int32_t	last_line;
 	int32_t	ply_occ;
 	int32_t	collectible_occ;
 	int32_t	exit_occ;
@@ -63,6 +64,13 @@ void		verify_min_size(char **map);
 void		count_colletibles(t_game *game);
 int			count_occ(char *str, char c);
 void		verify_rectangle(char **map, t_valid_map *t_map);
+void		verify_char_valid(char **map);
+void		init_map_validator(t_valid_map *map);
+void		verify_min_char(char **map, t_valid_map *t_map);
+void		verify_walls(char **map, t_valid_map *t_map);
+void		verify_pathway(char **map);
+void		flood_fill(char **map, int32_t l, int32_t c);
+void		verify_map_flood(char **map);
 // generate maps functions
 char		**generate_map(char *file);
 t_list		*read_file_to_list(char *file);
