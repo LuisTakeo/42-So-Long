@@ -25,18 +25,6 @@ void	delete_img_data(t_game *game, t_img_data *img_data)
 	mlx_delete_texture(img_data->texture);
 	free(img_data);
 }
-// teste de loop para animações no bonus
-// void	ft_count_loop(void *i)
-// {
-// 	int32_t	*it;
-
-// 	it = i;
-// 	(*it)++;
-// 	if(*it > 100)
-// 		*it = 0;
-// 	ft_printf("%d \n", *it);
-// }
-// mlx_put_string;
 
 void	count_colletibles(t_game *game)
 {
@@ -69,9 +57,9 @@ int32_t	main(int argc, char **argv)
 	// file = ft_strdup("./src/maps/map.ber");
 	game.map = generate_map(argv[1]);
 	count_colletibles(&game);
+
 	init_game(&game);
 	finish_game(&game);
-	// mlx_loop_hook(mlx, &ft_count_loop, &i);
 	// while (map[i])
 	// 	free(map[i++]);
 	// free(map);

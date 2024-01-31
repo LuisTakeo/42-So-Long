@@ -48,6 +48,27 @@ void	init_values(t_game *game)
 	game->max_height_tiles = 0;
 }
 
+// teste de loop para animações no BONUS
+void	ft_count_loop(void *param)
+{
+	t_game	*game;
+	int32_t	time;
+
+	game = (t_game *)param;
+	time = (int)(mlx_get_time() * 10);
+	if (game && (time % 30 == 0))
+	{
+		game->player_data[0]->img->enabled = 0;
+		game->player_data[1]->img->enabled = 1;
+	}
+	else if (game && (time % 15 == 0))
+	{
+		game->player_data[0]->img->enabled = 1;
+		game->player_data[1]->img->enabled = 0;
+	}
+}
+// mlx_put_string;
+
 void	init_game(t_game *game)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
@@ -59,5 +80,6 @@ void	init_game(t_game *game)
 	init_player_img(game);
 	game->lst_pos = '0';
 	mlx_key_hook(game->mlx, &listen_moves, game);
+	mlx_loop_hook(game->mlx, &ft_count_loop, game);
 	mlx_loop(game->mlx);
 }
