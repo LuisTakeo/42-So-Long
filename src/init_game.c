@@ -12,11 +12,11 @@
 
 #include "../includes/so_long.h"
 
-t_img_data	*insert_img_data(t_game *game, char *img_path)
+t_img_data *insert_img_data(t_game *game, char *img_path)
 {
-	t_img_data	*game_img;
+	t_img_data *game_img;
 
-	game_img = ft_calloc(sizeof (t_img_data), 1);
+	game_img = ft_calloc(sizeof(t_img_data), 1);
 	if (!game_img)
 		ft_error();
 	game_img->texture = mlx_load_png(img_path);
@@ -28,7 +28,7 @@ t_img_data	*insert_img_data(t_game *game, char *img_path)
 	return (game_img);
 }
 
-void	init_values(t_game *game)
+void init_values(t_game *game)
 {
 	game->mlx = NULL;
 	game->wall_data = NULL;
@@ -49,19 +49,19 @@ void	init_values(t_game *game)
 }
 
 // teste de loop para animações no BONUS
-void	ft_count_loop(void *param)
+void ft_count_loop(void *param)
 {
-	t_game	*game;
-	int32_t	time;
+	t_game *game;
+	int32_t time;
 
 	game = (t_game *)param;
 	time = (int)(mlx_get_time() * 10);
-	if (game && (time % 30 == 0))
+	if (game && (time % 20 == 0))
 	{
 		game->player_data[0]->img->enabled = 0;
 		game->player_data[1]->img->enabled = 1;
 	}
-	else if (game && (time % 15 == 0))
+	else if (game && (time % 10 == 0))
 	{
 		game->player_data[0]->img->enabled = 1;
 		game->player_data[1]->img->enabled = 0;
@@ -69,7 +69,7 @@ void	ft_count_loop(void *param)
 }
 // mlx_put_string;
 
-void	init_game(t_game *game)
+void init_game(t_game *game)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
