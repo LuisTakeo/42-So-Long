@@ -84,7 +84,7 @@ char	**ft_split(char const *s, char c)
 	if (!arr_str)
 	{
 		free(arr_str);
-		return (arr_str);
+		// return (arr_str);
 	}
 	return (ft_alloc_words(s, arr_str, c, count_words));
 }

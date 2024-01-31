@@ -102,7 +102,7 @@ char	*get_next_line(int fd)
 {
 	char				*buffer;
 	char				*new_line;
-	t_list_char static	*t_char_node[1024];
+	static t_list_char	*t_char_node[1024];
 	ssize_t				r;
 
 	if (fd < 0 || fd > 1024)
