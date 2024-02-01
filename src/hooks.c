@@ -21,7 +21,10 @@ int32_t	is_direction(mlx_key_data_t keydata, keys_t key1, keys_t key2)
 void	verify_collectible(t_game *game, int32_t y, int32_t x)
 {
 	if (game->map[y][x] == 'C')
+	{
+		upt_collectable(game, y, x);
 		game->collectibles -= 1;
+	}
 	if (game->collectibles == 0)
 		game->exit_active = 1;
 }

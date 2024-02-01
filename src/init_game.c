@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:35:15 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/31 21:15:35 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:41:08 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_img_data	*insert_img_data(t_game *game, char *img_path)
 	game_img->img = mlx_texture_to_image(game->mlx, game_img->texture);
 	if (!game_img->img)
 		ft_error();
+	game_img->x = 0;
+	game_img->y = 0;
 	return (game_img);
 }
 
@@ -50,10 +52,10 @@ void	init_values(t_game *game)
 }
 
 // teste de loop para animações no BONUS
-void ft_count_loop(void *param)
+void	ft_count_loop(void *param)
 {
-	t_game *game;
-	int32_t time;
+	t_game	*game;
+	int32_t	time;
 
 	game = (t_game *)param;
 	time = (int)(mlx_get_time() * 10);
@@ -68,9 +70,8 @@ void ft_count_loop(void *param)
 		game->player_data[1]->img->enabled = 0;
 	}
 }
-// mlx_put_string;
 
-void init_game(t_game *game)
+void	init_game(t_game *game)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);

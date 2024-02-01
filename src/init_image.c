@@ -28,8 +28,8 @@ void	init_player_img(t_game *game)
 		{
 			if (game->map[l][c] == 'P')
 			{
-				if (img_to_win(game, game->player_data[0]->img, c, l)
-					|| img_to_win(game, game->player_data[1]->img, c, l))
+				if (img_to_win(game, game->player_data[0], c, l)
+					|| img_to_win(game, game->player_data[1], c, l))
 					ft_error();
 				upt_player_pos(game, l, c);
 				return ;
@@ -56,7 +56,7 @@ void	init_exit_image(t_game *game)
 		{
 			if (game->map[l][c] == 'E')
 			{
-				if (img_to_win(game, game->exit_data->img, c, l))
+				if (img_to_win(game, game->exit_data, c, l))
 					ft_error();
 				return ;
 			}
@@ -83,9 +83,9 @@ void	init_map_image(t_game *game)
 		while (game->map[l][c])
 		{
 			if (game->map[l][c] == '1')
-				is_invalid += img_to_win(game, game->wall_data->img, c, l);
+				is_invalid += img_to_win(game, game->wall_data, c, l);
 			if (ft_strchr("0PCE", game->map[l][c]))
-				is_invalid += img_to_win(game, game->floor_data->img, c, l);
+				is_invalid += img_to_win(game, game->floor_data, c, l);
 			if (is_invalid)
 				ft_error();
 			c++;
@@ -118,7 +118,6 @@ void	init_collectible_image(t_game *game)
 	l = 0;
 	x = 0;
 	alloc_collectibles(game);
-	ft_printf("INIT COLLETAVEIS");
 	while (game->map[l])
 	{
 		c = 0;
@@ -127,7 +126,7 @@ void	init_collectible_image(t_game *game)
 			if (game->map[l][c] == 'C')
 			{
 				is_invalid += img_to_win(
-						game, game->collect_data[x++]->img, c, l);
+						game, game->collect_data[x++], c, l);
 			}
 			if (is_invalid)
 				ft_error();
@@ -135,5 +134,4 @@ void	init_collectible_image(t_game *game)
 		}
 		l++;
 	}
-	ft_printf("INIT COLLETAVEIS");
 }

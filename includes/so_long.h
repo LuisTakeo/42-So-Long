@@ -6,14 +6,14 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:03:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/31 21:14:07 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:58:23 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define WIDTH_TILE 128
-# define HEIGHT_TILE 128
+# define WIDTH_TILE 64
+# define HEIGHT_TILE 64
 # define WIDTH 1600
 # define HEIGHT 800
 
@@ -27,6 +27,8 @@ typedef struct s_image_data
 {
 	mlx_image_t		*img;
 	mlx_texture_t	*texture;
+	int32_t			x;
+	int32_t			y;
 }	t_img_data;
 
 typedef struct s_valid_map
@@ -98,8 +100,9 @@ void		upt_map_player(t_game *game, int32_t y, int32_t x);
 t_img_data	*insert_img_data(t_game *game, char *img_path);
 void		upt_img_screen(t_game *game, char direction, char op);
 void		upt_img_side(t_img_data **player_data, char side);
-int32_t		img_to_win(t_game *game, mlx_image_t *img, int32_t c, int32_t l);
+int32_t		img_to_win(t_game *game, t_img_data *src, int32_t c, int32_t l);
 void		upt_exit_screen(t_game *game);
+void		upt_collectable(t_game *game, int32_t y, int32_t x);
 // finish game
 void		delete_img_data(t_game *game, t_img_data *img_data);
 void		free_map(char **map);
