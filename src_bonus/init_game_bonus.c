@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   init_game_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:35:15 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/01 20:31:45 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/01 19:33:16 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 t_img_data	*insert_img_data(t_game *game, char *img_path)
 {
@@ -51,6 +51,26 @@ void	init_values(t_game *game)
 	game->max_height_tiles = 0;
 }
 
+// teste de loop para animações no BONUS
+void	ft_count_loop(void *param)
+{
+	t_game	*game;
+	int32_t	time;
+
+	game = (t_game *)param;
+	time = (int)(mlx_get_time() * 10);
+	if (game && (time % 20 == 0))
+	{
+		game->player_data[0]->img->enabled = 0;
+		game->player_data[1]->img->enabled = 1;
+	}
+	else if (game && (time % 10 == 0))
+	{
+		game->player_data[0]->img->enabled = 1;
+		game->player_data[1]->img->enabled = 0;
+	}
+}
+
 void	init_game(t_game *game)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
@@ -63,5 +83,6 @@ void	init_game(t_game *game)
 	init_player_img(game);
 	game->lst_pos = '0';
 	mlx_key_hook(game->mlx, &listen_moves, game);
+	mlx_loop_hook(game->mlx, &ft_count_loop, game);
 	mlx_loop(game->mlx);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pre_validation.c                                   :+:      :+:    :+:   */
+/*   pre_validation_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:44:45 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/01 19:29:26 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/01 19:33:16 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	verify_min_size(char **map)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img_ingame.c                                       :+:      :+:    :+:   */
+/*   img_ingame_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:20:08 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/01 18:03:57 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/01 19:33:16 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	upt_img_screen(t_game *game, char direction, char op)
 {

@@ -3,6 +3,7 @@ NAME_BONUS = so_long_bonus
 LIBS_FOLDER = ./lib
 LIBMLX = $(LIBS_FOLDER)/MLX42
 LIBFT = $(LIBS_FOLDER)/libft
+HEADERS = ./includes/so_long.h ./includes/so_long.h
 
 CC = cc
 FLAGS = -Wextra -Wall -Werror
@@ -23,11 +24,28 @@ SRC = ./src/main.c \
 	 ./src/flood_fill.c \
 	 ./src/char_valid.c \
 	 ./src/utils.c
+
+SRC_BONUS = ./src_bonus/main_bonus.c \
+	 ./src_bonus/hooks_bonus.c \
+	 ./src_bonus/generate_map_bonus.c \
+	 ./src_bonus/init_game_bonus.c \
+	 ./src_bonus/init_image_bonus.c \
+	 ./src_bonus/img_screen_bonus.c \
+	 ./src_bonus/img_ingame_bonus.c \
+	 ./src_bonus/finish_game_bonus.c \
+	 ./src_bonus/update_map_bonus.c \
+	 ./src_bonus/pre_validation_bonus.c \
+	 ./src_bonus/flood_fill_bonus.c \
+	 ./src_bonus/char_valid_bonus.c \
+	 ./src_bonus/utils_bonus.c
 INCLUDES = -I includes -I $(LIBMLX)/include -I $(LIBFT)/ -I $(LIBFT)/gnl/includes -I $(LIBFT)/ft_printf/includes
 OBJS = ${SRC:%.c=%.o}
+OBJS_BONUS = ${SRC_BONUS:%.c=%.o}
 
 all: libmlx libft $(NAME)
 	@echo "Concluido!"
+
+bonus: libmlx libft $(NAME_BONUS)
 
 libmlx:
 	@echo "Compilando lib gráfica..."
@@ -37,13 +55,16 @@ libft:
 	@echo "Compilando Libft..."
 	@make all bonus new_fun -C $(LIBFT) $(FLAGS) --no-print-directory
 
-%.o: %.c
-	@$(CC) $(FLAGS) $(FLAGSOMLX) -o $@ -c $< $(INCLUDES) && echo "Compilando: $(notdir $<)"
+%.o: %.c $(HEADERS)
+	@$(CC) $(FLAGS) $(FLAGSOMLX) -o $@ -c $< && echo "Compilando: $(notdir $<)"
 
 $(NAME): $(OBJS)
 	@echo "Criando arquivo $(NAME)"
 	@$(CC) $(OBJS) $(LIBS) $(INCLUDES) -o $(NAME) $(FLAGSMLX)
 
+$(NAME_BONUS): $(OBJS_BONUS)
+	@echo "Criando arquivo $(NAME)"
+	@$(CC) $(OBJS_BONUS) $(LIBS) $(INCLUDES) -o $(NAME_BONUS) $(FLAGSMLX)
 clean:
 	@echo "Limpando objects..."
 	@rm -rf $(OBJS)

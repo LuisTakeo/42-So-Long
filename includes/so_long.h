@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:03:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/31 21:58:23 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/01 20:01:46 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define SO_LONG_H
 # define WIDTH_TILE 64
 # define HEIGHT_TILE 64
-# define WIDTH 1600
-# define HEIGHT 800
+# define WIDTH 1900
+# define HEIGHT 600
 
-# include "MLX42/MLX42.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../lib/libft/libft.h"
 # include "../lib/libft/gnl/includes/get_next_line.h"
 # include "../lib/libft/ft_printf/includes/ft_printf.h"
@@ -45,7 +45,6 @@ typedef struct s_game
 	mlx_t		*mlx;
 	t_img_data	*wall_data;
 	t_img_data	*floor_data;
-	t_img_data	*collectible_data;
 	t_img_data	*exit_data;
 	t_img_data	*player_data[2];
 	t_img_data	**collect_data;
@@ -106,6 +105,7 @@ void		upt_collectable(t_game *game, int32_t y, int32_t x);
 // finish game
 void		delete_img_data(t_game *game, t_img_data *img_data);
 void		free_map(char **map);
+void		free_img_data(t_game *game, t_img_data **arr_img);
 void		finish_game(t_game *game);
 // error functions
 void		ft_error(void);

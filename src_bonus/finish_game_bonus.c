@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   finish_game.c                                      :+:      :+:    :+:   */
+/*   finish_game_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:13:16 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/01 18:21:06 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/01 19:32:35 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	finish_game(t_game *game)
 {
