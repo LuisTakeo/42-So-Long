@@ -6,11 +6,12 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:13:16 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/30 13:39:00 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:36:33 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
 void	finish_game(t_game *game)
 {
 	delete_img_data(game, game->player_data[0]);

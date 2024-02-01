@@ -6,15 +6,15 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:35:15 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/30 14:13:06 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:15:35 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-t_img_data *insert_img_data(t_game *game, char *img_path)
+t_img_data	*insert_img_data(t_game *game, char *img_path)
 {
-	t_img_data *game_img;
+	t_img_data	*game_img;
 
 	game_img = ft_calloc(sizeof(t_img_data), 1);
 	if (!game_img)
@@ -28,15 +28,16 @@ t_img_data *insert_img_data(t_game *game, char *img_path)
 	return (game_img);
 }
 
-void init_values(t_game *game)
+void	init_values(t_game *game)
 {
 	game->mlx = NULL;
 	game->wall_data = NULL;
 	game->floor_data = NULL;
-	game->collectible_data = NULL;
+	game->collect_data = NULL;
 	game->exit_data = NULL;
 	game->player_data[0] = NULL;
 	game->player_data[1] = NULL;
+	game->collect_data = NULL;
 	game->player_pos_x = 0;
 	game->player_pos_y = 0;
 	game->player_moves = 0;
@@ -77,6 +78,7 @@ void init_game(t_game *game)
 		ft_error();
 	init_map_image(game);
 	init_exit_image(game);
+	init_collectible_image(game);
 	init_player_img(game);
 	game->lst_pos = '0';
 	mlx_key_hook(game->mlx, &listen_moves, game);

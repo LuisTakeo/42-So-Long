@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:22:17 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/30 21:08:40 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:05:16 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ t_list	*read_file_to_list(char *file)
 	line = get_next_line(fd);
 	if (!line)
 		return (NULL);
-	// #TODO tratar validações
 	while (line)
 	{
 		ft_lstadd_back(&str_list, ft_lstnew(line));

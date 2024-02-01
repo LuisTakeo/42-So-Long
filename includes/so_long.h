@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:03:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/30 20:48:54 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:14:07 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ typedef struct s_game
 	t_img_data	*collectible_data;
 	t_img_data	*exit_data;
 	t_img_data	*player_data[2];
+	t_img_data	**collect_data;
+	int32_t		collectibles;
 	int32_t		player_pos_x;
 	int32_t		player_pos_y;
 	int32_t		player_moves;
-	int32_t		collectibles;
 	int32_t		exit_active;
 	char		**map;
 	char		lst_pos;
@@ -58,10 +59,9 @@ typedef struct s_game
 }	t_game;
 
 // validations pre-game
-void		validate_map(char *path);
 void		is_valid_entry(char *entry, char *extension);
+void		validate_map(char *path);
 void		verify_min_size(char **map);
-void		count_colletibles(t_game *game);
 int			count_occ(char *str, char c);
 void		verify_rectangle(char **map, t_valid_map *t_map);
 void		verify_char_valid(char **map);
@@ -71,6 +71,7 @@ void		verify_walls(char **map, t_valid_map *t_map);
 void		verify_pathway(char **map);
 void		flood_fill(char **map, int32_t l, int32_t c);
 void		verify_map_flood(char **map);
+void		count_colletibles(t_game *game);
 // generate maps functions
 char		**generate_map(char *file);
 t_list		*read_file_to_list(char *file);
@@ -89,6 +90,8 @@ void		init_player_img(t_game *game);
 void		init_map_image(t_game *game);
 void		init_exit_image(t_game *game);
 void		upt_player_pos(t_game *game, int32_t l, int32_t c);
+void		init_collectible_image(t_game *game);
+void		alloc_collectibles(t_game *game);
 // map functions
 void		upt_map_player(t_game *game, int32_t y, int32_t x);
 // images functions
