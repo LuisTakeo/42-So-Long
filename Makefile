@@ -65,9 +65,10 @@ $(NAME): $(OBJS)
 $(NAME_BONUS): $(OBJS_BONUS)
 	@echo "Criando arquivo $(NAME)"
 	@$(CC) $(OBJS_BONUS) $(LIBS) $(INCLUDES) -o $(NAME_BONUS) $(FLAGSMLX)
+
 clean:
 	@echo "Limpando objects..."
-	@rm -rf $(OBJS)
+	@rm -rf $(OBJS) $(OBJS_BONUS)
 	@make clean -C $(LIBFT) --no-print-directory
 	@echo "Limpando build..."
 	@rm -rf $(LIBMLX)/build
@@ -78,7 +79,7 @@ fclean: clean
 	@echo "Removendo libft.a..."
 	@make fclean -C $(LIBFT) --no-print-directory
 	@echo "Removendo executável..."
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(NAME_BONUS)
 	@echo "Feito!"
 
 re: fclean all

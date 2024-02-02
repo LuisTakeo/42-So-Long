@@ -17,7 +17,7 @@
 # define WIDTH 1600
 # define HEIGHT 800
 
-# include "MLX42/MLX42.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../lib/libft/libft.h"
 # include "../lib/libft/gnl/includes/get_next_line.h"
 # include "../lib/libft/ft_printf/includes/ft_printf.h"
