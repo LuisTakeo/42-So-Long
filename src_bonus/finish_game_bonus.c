@@ -14,20 +14,30 @@
 
 void	finish_game(t_game *game)
 {
-	delete_img_data(game, game->player_data[0]);
-	delete_img_data(game, game->player_data[1]);
-	delete_img_data(game, game->player_data[2]);
-	delete_img_data(game, game->player_data[3]);
-	delete_img_data(game, game->wall_data);
-	delete_img_data(game, game->floor_data);
-	delete_img_data(game, game->exit_data);
-	delete_img_data(game, game->bg_count_data);
-	mlx_delete_image(game->mlx, game->count_img);
-	mlx_delete_image(game->mlx, game->text_img);
-	free_img_data(game, game->collect_data);
+	free_data(game, game->player_data[0]);
+	free_data(game, game->player_data[1]);
+	free_data(game, game->player_data[2]);
+	free_data(game, game->player_data[3]);
+	free_data(game, game->enemy_data);
+	free_data(game, game->wall_data);
+	free_data(game, game->floor_data);
+	free_data(game, game->exit_data);
+	free_data(game, game->bg_count_data);
+	if (game->count_img)
+		mlx_delete_image(game->mlx, game->count_img);
+	if (game->text_img)
+		mlx_delete_image(game->mlx, game->text_img);
+	if (game->collect_data)
+		free_img_data(game, game->collect_data);
 	free_map(game->map);
 	mlx_terminate(game->mlx);
 	exit(MLX_SUCCESS);
+}
+
+void	free_data(t_game *game, t_img_data *img)
+{
+	if (img)
+		delete_img_data(game, img);
 }
 
 void	free_map(char **map)
@@ -47,7 +57,7 @@ void	free_img_data(t_game *game, t_img_data **arr_img)
 
 	i = -1;
 	while (arr_img[++i])
-		delete_img_data(game, arr_img[i]);
+		free_data(game, arr_img[i]);
 	free (arr_img);
 }
 

@@ -47,6 +47,7 @@ typedef struct s_game
 	t_img_data	*floor_data;
 	t_img_data	*exit_data;
 	t_img_data	*player_data[4];
+	t_img_data	*enemy_data;
 	t_img_data	**collect_data;
 	t_img_data	*bg_count_data;
 	mlx_image_t	*count_img;
@@ -96,6 +97,7 @@ void		init_player_img(t_game *game);
 void		init_map_image(t_game *game);
 void		put_floor_image(t_game *game);
 void		init_exit_image(t_game *game);
+void		init_enemies_img(t_game *game);
 void		upt_player_pos(t_game *game, int32_t l, int32_t c);
 void		init_collectible_image(t_game *game);
 void		alloc_collectibles(t_game *game);
@@ -121,6 +123,7 @@ void		free_map(char **map);
 void		free_img_data(t_game *game, t_img_data **arr_img);
 void		finish_game(t_game *game);
 // error functions
-void		ft_error(void);
+void		ft_error(t_game *game);
+void		free_data(t_game *game, t_img_data *img);
 
 #endif

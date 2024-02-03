@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:02:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/31 21:12:43 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/03 07:38:01 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	count_colletibles(t_game *game)
 	int32_t	c;
 	int32_t	l;
 
-	ft_printf("Entrou aqui\n");
 	game->collectibles = 0;
 	l = 0;
 	while (game->map[l])

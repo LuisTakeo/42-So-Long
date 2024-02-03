@@ -13,9 +13,10 @@
 #include "../includes/so_long_bonus.h"
 
 // Exit the program as failure.
-void	ft_error(void)
+void	ft_error(t_game *game)
 {
-	ft_printf("%s", mlx_strerror(mlx_errno));
+	ft_printf("Error!\n%s\n", mlx_strerror(mlx_errno));
+	finish_game(game);
 	exit(EXIT_FAILURE);
 }
 

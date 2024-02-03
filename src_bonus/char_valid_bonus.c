@@ -24,7 +24,7 @@ void	verify_char_valid(char **map)
 		c = 0;
 		while (map[l][c])
 		{
-			if (!ft_strchr("1E0CP\n\r", map[l][c]))
+			if (!ft_strchr("1E0CPX\n\r", map[l][c]))
 			{
 				free_map(map);
 				exit(ft_printf("Não possui todos caracteres válidos."));

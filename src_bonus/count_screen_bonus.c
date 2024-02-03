@@ -17,7 +17,7 @@ void	init_count(t_game *game)
 	game->bg_count_data = insert_img_data(game, "./src_bonus/img/bg.png");
 	if (mlx_image_to_window(
 			game->mlx, game->bg_count_data->img, 0, 0) < 0)
-		ft_error();
+		ft_error(game);
 	game->text_img = mlx_put_string(game->mlx, "Steps:", 20, 22);
 	upt_count_screen(game);
 }

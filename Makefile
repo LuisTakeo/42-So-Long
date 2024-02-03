@@ -40,7 +40,8 @@ SRC_BONUS = ./src_bonus/main_bonus.c \
 	 ./src_bonus/utils_bonus.c \
 	 ./src_bonus/animation_char_bonus.c \
 	 ./src_bonus/init_player_img_bonus.c \
-	 ./src_bonus/count_screen_bonus.c
+	 ./src_bonus/count_screen_bonus.c \
+	 ./src_bonus/init_enemies_bonus.c
 INCLUDES = -I includes -I $(LIBMLX)/include -I $(LIBFT)/ -I $(LIBFT)/gnl/includes -I $(LIBFT)/ft_printf/includes
 OBJS = ${SRC:%.c=%.o}
 OBJS_BONUS = ${SRC_BONUS:%.c=%.o}

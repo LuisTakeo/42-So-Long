@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:35:15 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/03 05:42:04 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/03 07:38:06 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	init_game(t_game *game)
 			game->max_height_tiles * HEIGHT_TILE, "so_long", true);
 	if (!game->mlx)
 		ft_error();
-	ft_printf("Tiles %d %d\n", game->max_width_tiles, game->max_height_tiles);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	init_map_image(game);
 	init_exit_image(game);

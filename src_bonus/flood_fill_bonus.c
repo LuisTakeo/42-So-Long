@@ -14,7 +14,7 @@
 
 void	flood_fill(char **map, int32_t l, int32_t c)
 {
-	if (map[l][c] != '1')
+	if (!ft_strchr("1X", map[l][c]))
 	{
 		map[l][c] = '1';
 		flood_fill(map, l + 1, c);

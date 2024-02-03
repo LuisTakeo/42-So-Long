@@ -69,6 +69,11 @@ int	is_invalid_move(t_game *game, char direction, char op)
 		y += sum;
 	if (game->map[y][x] == '1')
 		return (1);
+	if (game->map[y][x] == 'X')
+	{
+		ft_printf("You lose )=... Try again?\n");
+		finish_game(game);
+	}
 	verify_collectible(game, y, x);
 	upt_exit_screen(game);
 	upt_map_player(game, y, x);

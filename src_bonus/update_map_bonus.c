@@ -27,5 +27,4 @@ void	upt_map_player(t_game *game, int32_t y, int32_t x)
 		game->map[old_y][old_x] = '0';
 	else
 		game->map[old_y][old_x] = last_temp;
-	ft_printf("Line %d: %s", y, game->map[y]);
 }

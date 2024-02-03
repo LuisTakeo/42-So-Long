@@ -17,7 +17,7 @@ void	init_player_img(t_game *game)
 	int32_t	l;
 	int32_t	c;
 
-	init_player_frames (game);
+	init_player_frames(game);
 	l = 0;
 	while (game->map[l])
 	{
@@ -57,5 +57,5 @@ void	put_player_to_win(t_game *game, int32_t c, int32_t l)
 		|| img_to_win(game, game->player_data[1], c, l)
 		|| img_to_win(game, game->player_data[2], c, l)
 		|| img_to_win(game, game->player_data[3], c, l))
-		ft_error();
+		ft_error(game);
 }
