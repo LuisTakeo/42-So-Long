@@ -4,6 +4,8 @@
 		"so_long.h": "c",
 		"random": "c",
 		"ft_printf.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"so_long_bonus.h": "c",
+		"sstream": "c"
 	}
 }

@@ -3,7 +3,7 @@ NAME_BONUS = so_long_bonus
 LIBS_FOLDER = ./lib
 LIBMLX = $(LIBS_FOLDER)/MLX42
 LIBFT = $(LIBS_FOLDER)/libft
-HEADERS = ./includes/so_long.h ./includes/so_long.h
+HEADERS = ./includes/so_long.h ./includes/so_long_bonus.h
 
 CC = cc
 FLAGS = -Wextra -Wall -Werror
@@ -37,7 +37,10 @@ SRC_BONUS = ./src_bonus/main_bonus.c \
 	 ./src_bonus/pre_validation_bonus.c \
 	 ./src_bonus/flood_fill_bonus.c \
 	 ./src_bonus/char_valid_bonus.c \
-	 ./src_bonus/utils_bonus.c
+	 ./src_bonus/utils_bonus.c \
+	 ./src_bonus/animation_char_bonus.c \
+	 ./src_bonus/init_player_img_bonus.c \
+	 ./src_bonus/count_screen_bonus.c
 INCLUDES = -I includes -I $(LIBMLX)/include -I $(LIBFT)/ -I $(LIBFT)/gnl/includes -I $(LIBFT)/ft_printf/includes
 OBJS = ${SRC:%.c=%.o}
 OBJS_BONUS = ${SRC_BONUS:%.c=%.o}

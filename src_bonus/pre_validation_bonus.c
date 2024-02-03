@@ -39,14 +39,14 @@ void	verify_rectangle(char **map, t_valid_map *t_map)
 	int32_t	c;
 
 	c = 0;
-	while (map[0][c] != '\n')
+	while (map[0][c] != '\n' && map[0][c] != '\r')
 		c++;
 	t_map->last_col = c;
 	l = 0;
 	while (map[++l])
 	{
 		c = 0;
-		while (map[l][c] && map[l][c] != '\n')
+		while (map[l][c] && (map[l][c] != '\n' && map[l][c] != '\r'))
 			c++;
 		if (c != t_map->last_col)
 		{

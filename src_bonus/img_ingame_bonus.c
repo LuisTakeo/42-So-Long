@@ -29,28 +29,27 @@ void	upt_img_screen(t_game *game, char direction, char op)
 
 void	move_player(t_game *game, char pos, char operator)
 {
-	if (pos == 'x' && operator == '+')
+	int32_t	x;
+
+	x = WIDTH_TILE;
+	if (operator == '-')
+		x *= -1;
+	if (pos == 'x')
 	{
-		game->player_data[0]->img->instances[0].x += WIDTH_TILE;
-		game->player_data[1]->img->instances[0].x += WIDTH_TILE;
+		game->player_data[0]->img->instances[0].x += x;
+		game->player_data[1]->img->instances[0].x += x;
+		game->player_data[2]->img->instances[0].x += x;
+		game->player_data[3]->img->instances[0].x += x;
 	}
-	if (pos == 'x' && operator == '-')
+	if (pos == 'y')
 	{
-		game->player_data[0]->img->instances[0].x -= WIDTH_TILE;
-		game->player_data[1]->img->instances[0].x -= WIDTH_TILE;
-	}
-	if (pos == 'y' && operator == '+')
-	{
-		game->player_data[0]->img->instances[0].y += WIDTH_TILE;
-		game->player_data[1]->img->instances[0].y += WIDTH_TILE;
-	}
-	if (pos == 'y' && operator == '-')
-	{
-		game->player_data[0]->img->instances[0].y -= WIDTH_TILE;
-		game->player_data[1]->img->instances[0].y -= WIDTH_TILE;
+		game->player_data[0]->img->instances[0].y += x;
+		game->player_data[1]->img->instances[0].y += x;
+		game->player_data[2]->img->instances[0].y += x;
+		game->player_data[3]->img->instances[0].y += x;
 	}
 	game->player_moves++;
-	ft_printf("Steps: %d\n", game->player_moves);
+	upt_count_screen(game);
 }
 
 void	upt_img_side(t_img_data **player_data, char side)
@@ -59,10 +58,14 @@ void	upt_img_side(t_img_data **player_data, char side)
 	{
 		player_data[0]->img->enabled = 0;
 		player_data[1]->img->enabled = 1;
+		player_data[2]->img->enabled = 0;
+		player_data[3]->img->enabled = 0;
 	}
 	if (side == '<')
 	{
 		player_data[0]->img->enabled = 1;
 		player_data[1]->img->enabled = 0;
+		player_data[2]->img->enabled = 0;
+		player_data[3]->img->enabled = 0;
 	}
 }

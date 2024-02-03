@@ -82,16 +82,15 @@ void	init_map_image(t_game *game)
 		c = 0;
 		while (game->map[l][c])
 		{
-			if (game->map[l][c] == '1')
+			if (game->map[l][c] == '1' || ft_strchr("0PCE", game->map[l][c]))
 				is_invalid += img_to_win(game, game->wall_data, c, l);
-			if (ft_strchr("0PCE", game->map[l][c]))
-				is_invalid += img_to_win(game, game->floor_data, c, l);
 			if (is_invalid)
 				ft_error();
 			c++;
 		}
 		l++;
 	}
+	put_floor_image(game);
 }
 
 void	alloc_collectibles(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:03:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/01 20:01:46 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/03 05:43:23 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,10 @@ void		verify_end_game(t_game *game);
 // init game
 void		init_values(t_game *game);
 void		init_game(t_game *game);
+void		count_map_size(t_game *game);
 void		init_player_img(t_game *game);
 void		init_map_image(t_game *game);
+void		put_floor_image(t_game *game);
 void		init_exit_image(t_game *game);
 void		upt_player_pos(t_game *game, int32_t l, int32_t c);
 void		init_collectible_image(t_game *game);

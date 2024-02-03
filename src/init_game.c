@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:35:15 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/01 20:31:45 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/03 05:42:04 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,53 @@ void	init_values(t_game *game)
 	game->max_height_tiles = 0;
 }
 
+void	count_map_size(t_game *game)
+{
+	int32_t	l;
+	int32_t	c;
+
+	l = 0;
+	c = 0;
+	while (game->map[l])
+		l++;
+	while (!ft_strchr("\r\n", game->map[0][c]))
+		c++;
+	game->max_width_tiles = c;
+	game->max_height_tiles = l;
+}
+
+void	put_floor_image(t_game *game)
+{
+	int32_t	l;
+	int32_t	c;
+	int32_t	is_invalid;
+
+	is_invalid = 0;
+	l = 0;
+	while (game->map[l])
+	{
+		c = 0;
+		while (game->map[l][c])
+		{
+			if (ft_strchr("0PCE", game->map[l][c]))
+				is_invalid += img_to_win(game, game->floor_data, c, l);
+			if (is_invalid)
+				ft_error();
+			c++;
+		}
+		l++;
+	}
+}
+
 void	init_game(t_game *game)
 {
-	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
+	count_map_size(game);
+	game->mlx = mlx_init(WIDTH_TILE * game->max_width_tiles,
+			game->max_height_tiles * HEIGHT_TILE, "so_long", true);
 	if (!game->mlx)
 		ft_error();
+	ft_printf("Tiles %d %d\n", game->max_width_tiles, game->max_height_tiles);
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	init_map_image(game);
 	init_exit_image(game);
 	init_collectible_image(game);

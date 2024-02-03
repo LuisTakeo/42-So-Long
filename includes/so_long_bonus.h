@@ -46,8 +46,11 @@ typedef struct s_game
 	t_img_data	*wall_data;
 	t_img_data	*floor_data;
 	t_img_data	*exit_data;
-	t_img_data	*player_data[2];
+	t_img_data	*player_data[4];
 	t_img_data	**collect_data;
+	t_img_data	*bg_count_data;
+	mlx_image_t	*count_img;
+	mlx_image_t	*text_img;
 	int32_t		collectibles;
 	int32_t		player_pos_x;
 	int32_t		player_pos_y;
@@ -86,13 +89,18 @@ int32_t		is_direction(mlx_key_data_t keydata, keys_t key1, keys_t key2);
 void		verify_end_game(t_game *game);
 // init game
 void		init_values(t_game *game);
+void		init_player_values(t_game *game);
 void		init_game(t_game *game);
+void		count_map_size(t_game *game);
 void		init_player_img(t_game *game);
 void		init_map_image(t_game *game);
+void		put_floor_image(t_game *game);
 void		init_exit_image(t_game *game);
 void		upt_player_pos(t_game *game, int32_t l, int32_t c);
 void		init_collectible_image(t_game *game);
 void		alloc_collectibles(t_game *game);
+void		init_count(t_game *game);
+void		upt_count_screen(t_game *game);
 // map functions
 void		upt_map_player(t_game *game, int32_t y, int32_t x);
 // images functions
@@ -102,6 +110,11 @@ void		upt_img_side(t_img_data **player_data, char side);
 int32_t		img_to_win(t_game *game, t_img_data *src, int32_t c, int32_t l);
 void		upt_exit_screen(t_game *game);
 void		upt_collectable(t_game *game, int32_t y, int32_t x);
+void		init_player_frames(t_game *game);
+void		put_player_to_win(t_game *game, int32_t c, int32_t l);
+// animations functions
+void		ft_count_loop(void *param);
+void		animate_player(t_game *game, int32_t time);
 // finish game
 void		delete_img_data(t_game *game, t_img_data *img_data);
 void		free_map(char **map);

@@ -26,7 +26,6 @@ void verify_char_valid(char **map)
 		{
 			if (!ft_strchr("1E0CP\n\r", map[l][c]))
 			{
-				ft_printf("Caractere inválido: %d\n Linha %d, coluna %d.\n", map[l][c], l, c);
 				free_map(map);
 				exit(ft_printf("Não possui todos caracteres válidos."));
 			}
@@ -52,7 +51,8 @@ void verify_min_char(char **map, t_valid_map *t_map)
 		t_map->collectible_occ += count_occ(map[l], 'C');
 		t_map->exit_occ += count_occ(map[l], 'E');
 	}
-	if (t_map->ply_occ != 1 || t_map->exit_occ != 1 || t_map->collectible_occ == 0)
+	if (t_map->ply_occ != 1
+		|| t_map->exit_occ != 1 || t_map->collectible_occ == 0)
 	{
 		free_map(map);
 		exit(ft_printf("Quantia inválida de Player, Exit e/ou Coletáveis"));
@@ -69,7 +69,8 @@ void verify_walls(char **map, t_valid_map *t_map)
 	lst_column = t_map->last_col - 1;
 	lst_line = t_map->last_line - 1;
 	occ_invalid = 0;
-	if ((count_occ(map[0], '1') != t_map->last_col) || (count_occ(map[lst_line], '1') != t_map->last_col))
+	if ((count_occ(map[0], '1') != t_map->last_col)
+		|| (count_occ(map[lst_line], '1') != t_map->last_col))
 		occ_invalid = 1;
 	i = -1;
 	while (map[++i])
