@@ -33,4 +33,3 @@ void	upt_count_screen(t_game *game)
 	mlx_resize_image(game->count_img, 14, 24);
 	free(str);
 }
-

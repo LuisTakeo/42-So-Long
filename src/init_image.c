@@ -64,7 +64,6 @@ void	init_exit_image(t_game *game)
 		}
 		l++;
 	}
-
 }
 
 void	init_map_image(t_game *game)

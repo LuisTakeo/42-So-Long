@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_map_bonus.c                                     :+:      :+:    :+:   */
+/*   generate_map_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:22:17 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/01 19:33:16 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/04 04:58:33 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	**read_list_to_arr(t_list *str_list)
 	t_list	*t_temp;
 
 	arr_size = ft_lstsize(str_list);
-
 	arr_map = malloc(sizeof(char *) * (arr_size + 1));
 	i = -1;
 	arr_map[arr_size] = NULL;

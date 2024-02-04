@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pre_validation_bonus.c                                   :+:      :+:    :+:   */
+/*   pre_validation_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:44:45 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/01 19:33:16 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/04 04:59:15 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	verify_min_size(char **map)
 		free_map(map);
 		exit(ft_printf("Tamanho inválido"));
 	}
-
 }
 
 void	verify_rectangle(char **map, t_valid_map *t_map)
@@ -70,7 +69,6 @@ void	validate_map(char *path)
 {
 	char		**map;
 	t_valid_map	t_map;
-
 
 	map = generate_map(path);
 	if (!map)

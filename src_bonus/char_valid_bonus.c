@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   char_valid_bonus.c                                       :+:      :+:    :+:   */
+/*   char_valid_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -59,12 +59,12 @@ void	verify_min_char(char **map, t_valid_map *t_map)
 	}
 }
 
-void verify_walls(char **map, t_valid_map *t_map)
+void	verify_walls(char **map, t_valid_map *t_map)
 {
-	int32_t lst_line;
-	int32_t lst_column;
-	int32_t i;
-	int32_t occ_invalid;
+	int32_t	lst_line;
+	int32_t	lst_column;
+	int32_t	i;
+	int32_t	occ_invalid;
 
 	lst_column = t_map->last_col - 1;
 	lst_line = t_map->last_line - 1;

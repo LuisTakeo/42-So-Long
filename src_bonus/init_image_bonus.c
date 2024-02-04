@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_image_bonus.c                                       :+:      :+:    :+:   */
+/*   init_image_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -36,7 +36,6 @@ void	init_exit_image(t_game *game)
 		}
 		l++;
 	}
-
 }
 
 void	put_floor_image(t_game *game)

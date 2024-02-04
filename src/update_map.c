@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:15:06 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/30 14:15:54 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/04 04:38:01 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,4 @@ void	upt_map_player(t_game *game, int32_t y, int32_t x)
 		game->map[old_y][old_x] = '0';
 	else
 		game->map[old_y][old_x] = last_temp;
-	ft_printf("Line %d: %s", y, game->map[y]);
 }

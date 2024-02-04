@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 20:02:36 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/01 19:33:16 by tpaim-yu         ###   ########.fr       */
+/*   Created: 2024/02/04 04:24:32 by tpaim-yu          #+#    #+#             */
+/*   Updated: 2024/02/04 05:02:34 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	count_colletibles(t_game *game)
 	int32_t	c;
 	int32_t	l;
 
-	ft_printf("Entrou aqui\n");
 	game->collectibles = 0;
 	l = 0;
 	while (game->map[l])

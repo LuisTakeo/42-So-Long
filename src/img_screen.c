@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:39:24 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/01/31 21:56:49 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/04 05:06:37 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	upt_player_pos(t_game *game, int32_t l, int32_t c)
 {
 	game->player_pos_x = c;
 	game->player_pos_y = l;
-	ft_printf("Player pos: x-%d y-%d \n", c, l);
 }
 
 void	upt_collectable(t_game *game, int32_t y, int32_t x)
@@ -41,4 +40,3 @@ void	upt_collectable(t_game *game, int32_t y, int32_t x)
 			game->collect_data[l]->img->enabled = 0;
 	}
 }
-

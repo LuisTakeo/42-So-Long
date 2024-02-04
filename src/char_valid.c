@@ -12,10 +12,10 @@
 
 #include "../includes/so_long.h"
 
-void verify_char_valid(char **map)
+void	verify_char_valid(char **map)
 {
-	int l;
-	int c;
+	int	l;
+	int	c;
 
 	l = 0;
 	c = 0;
@@ -40,9 +40,9 @@ void verify_char_valid(char **map)
 	}
 }
 
-void verify_min_char(char **map, t_valid_map *t_map)
+void	verify_min_char(char **map, t_valid_map *t_map)
 {
-	int32_t l;
+	int32_t	l;
 
 	l = -1;
 	while (map[++l])
@@ -59,12 +59,12 @@ void verify_min_char(char **map, t_valid_map *t_map)
 	}
 }
 
-void verify_walls(char **map, t_valid_map *t_map)
+void	verify_walls(char **map, t_valid_map *t_map)
 {
-	int32_t lst_line;
-	int32_t lst_column;
-	int32_t i;
-	int32_t occ_invalid;
+	int32_t	lst_line;
+	int32_t	lst_column;
+	int32_t	i;
+	int32_t	occ_invalid;
 
 	lst_column = t_map->last_col - 1;
 	lst_line = t_map->last_line - 1;

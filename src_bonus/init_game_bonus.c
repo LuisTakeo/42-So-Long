@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game_bonus.c                                        :+:      :+:    :+:   */
+/*   init_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:35:15 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/01 19:33:16 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/04 04:24:55 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@ t_img_data	*insert_img_data(t_game *game, char *img_path)
 	if (!(game_img->texture))
 		ft_error(game);
 	game_img->img = mlx_texture_to_image(game->mlx, game_img->texture);
-	if (!game_img->img)
+	if (!(game_img->img))
+	{
+		mlx_delete_texture(game_img->texture);
+		free (game_img);
 		ft_error(game);
+	}
 	game_img->x = 0;
 	game_img->y = 0;
 	return (game_img);
