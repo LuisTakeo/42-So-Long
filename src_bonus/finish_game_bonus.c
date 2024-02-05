@@ -6,13 +6,13 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:13:16 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/04 05:02:55 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:20:15 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
-void finish_game(t_game *game)
+void	finish_game(t_game *game)
 {
 	free_data(game, game->player_data[0]);
 	free_data(game, game->player_data[1]);
@@ -34,15 +34,15 @@ void finish_game(t_game *game)
 	exit(MLX_SUCCESS);
 }
 
-void free_data(t_game *game, t_img_data *img)
+void	free_data(t_game *game, t_img_data *img)
 {
 	if (img)
 		delete_img_data(game, img);
 }
 
-void free_map(char **map)
+void	free_map(char **map)
 {
-	int32_t i;
+	int32_t	i;
 
 	i = -1;
 	while (map[++i])
@@ -51,9 +51,9 @@ void free_map(char **map)
 	map = NULL;
 }
 
-void free_img_data(t_game *game, t_img_data **arr_img)
+void	free_img_data(t_game *game, t_img_data **arr_img)
 {
-	int32_t i;
+	int32_t	i;
 
 	i = -1;
 	while (arr_img[++i])
@@ -61,7 +61,7 @@ void free_img_data(t_game *game, t_img_data **arr_img)
 	free(arr_img);
 }
 
-void verify_end_game(t_game *game)
+void	verify_end_game(t_game *game)
 {
 	if (game->lst_pos == 'E' && game->exit_active)
 	{

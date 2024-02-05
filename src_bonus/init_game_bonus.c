@@ -6,15 +6,15 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:35:15 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/04 04:24:55 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:22:45 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
-t_img_data *insert_img_data(t_game *game, char *img_path)
+t_img_data	*insert_img_data(t_game *game, char *img_path)
 {
-	t_img_data *game_img;
+	t_img_data	*game_img;
 
 	game_img = ft_calloc(sizeof(t_img_data), 1);
 	if (!game_img)
@@ -34,7 +34,7 @@ t_img_data *insert_img_data(t_game *game, char *img_path)
 	return (game_img);
 }
 
-void init_values(t_game *game)
+void	init_values(t_game *game)
 {
 	game->mlx = NULL;
 	game->wall_data = NULL;
@@ -54,7 +54,7 @@ void init_values(t_game *game)
 	game->is_moving = 0;
 }
 
-void init_player_values(t_game *game)
+void	init_player_values(t_game *game)
 {
 	game->player_data[0] = NULL;
 	game->player_data[1] = NULL;
@@ -66,10 +66,10 @@ void init_player_values(t_game *game)
 	game->player_moves = 0;
 }
 
-void count_map_size(t_game *game)
+void	count_map_size(t_game *game)
 {
-	int32_t l;
-	int32_t c;
+	int32_t	l;
+	int32_t	c;
 
 	l = 0;
 	c = 0;
@@ -81,11 +81,11 @@ void count_map_size(t_game *game)
 	game->max_height_tiles = l;
 }
 
-void init_game(t_game *game)
+void	init_game(t_game *game)
 {
 	count_map_size(game);
 	game->mlx = mlx_init(WIDTH_TILE * game->max_width_tiles,
-						 game->max_height_tiles * HEIGHT_TILE, "so_long", true);
+			game->max_height_tiles * HEIGHT_TILE, "so_long", true);
 	if (!game->mlx)
 		ft_error(game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);

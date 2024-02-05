@@ -12,13 +12,13 @@
 
 #include "../includes/so_long_bonus.h"
 
-void listen_moves(mlx_key_data_t keydata, void *param)
+void	listen_moves(mlx_key_data_t keydata, void *param)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = (t_game *)param;
 	if (game->is_moving)
-		return;
+		return ;
 	if (is_direction(keydata, MLX_KEY_A, MLX_KEY_LEFT))
 		upt_img_screen(game, 'x', '-');
 	if (is_direction(keydata, MLX_KEY_S, MLX_KEY_DOWN))
@@ -31,12 +31,13 @@ void listen_moves(mlx_key_data_t keydata, void *param)
 		finish_game(game);
 }
 
-int32_t is_direction(mlx_key_data_t keydata, keys_t key1, keys_t key2)
+int32_t	is_direction(mlx_key_data_t keydata, keys_t key1, keys_t key2)
 {
-	return ((keydata.key == key1 || keydata.key == key2) && keydata.action == MLX_PRESS);
+	return ((keydata.key == key1 || keydata.key == key2)
+		&& keydata.action == MLX_PRESS);
 }
 
-void verify_collectible(t_game *game, int32_t y, int32_t x)
+void	verify_collectible(t_game *game, int32_t y, int32_t x)
 {
 	if (game->map[y][x] == 'C')
 	{
@@ -47,17 +48,17 @@ void verify_collectible(t_game *game, int32_t y, int32_t x)
 		game->exit_active = 1;
 }
 
-void upt_exit_screen(t_game *game)
+void	upt_exit_screen(t_game *game)
 {
 	if (game->exit_active)
 		game->exit_data->img->enabled = 1;
 }
 
-int is_invalid_move(t_game *game, char direction, char op)
+int	is_invalid_move(t_game *game, char direction, char op)
 {
-	int32_t x;
-	int32_t y;
-	int32_t sum;
+	int32_t	x;
+	int32_t	y;
+	int32_t	sum;
 
 	sum = 1;
 	x = game->player_pos_x;

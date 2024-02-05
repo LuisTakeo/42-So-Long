@@ -6,23 +6,22 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 04:24:32 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/04 05:02:34 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:21:01 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
 // Exit the program as failure.
-void ft_error(t_game *game)
+void	ft_error(t_game *game)
 {
 	ft_printf("Error!\n%s\n", mlx_strerror(mlx_errno));
 	finish_game(game);
 	exit(EXIT_FAILURE);
 }
 
-void delete_img_data(t_game *game, t_img_data *img_data)
+void	delete_img_data(t_game *game, t_img_data *img_data)
 {
-
 	if (img_data->texture)
 		mlx_delete_texture(img_data->texture);
 	if (img_data->img)
@@ -30,10 +29,10 @@ void delete_img_data(t_game *game, t_img_data *img_data)
 	free(img_data);
 }
 
-void count_colletibles(t_game *game)
+void	count_colletibles(t_game *game)
 {
-	int32_t c;
-	int32_t l;
+	int32_t	c;
+	int32_t	l;
 
 	game->collectibles = 0;
 	l = 0;
@@ -47,9 +46,9 @@ void count_colletibles(t_game *game)
 	}
 }
 
-int32_t main(int argc, char **argv)
+int32_t	main(int argc, char **argv)
 {
-	t_game game;
+	t_game	game;
 
 	if (argc != 2)
 		return (ft_printf("Quantia de parametros inválida.\n"));

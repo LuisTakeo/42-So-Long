@@ -6,16 +6,16 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:20:08 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/04 04:59:47 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:18:29 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
-void upt_img_screen(t_game *game, char direction, char op)
+void	upt_img_screen(t_game *game, char direction, char op)
 {
 	if (is_invalid_move(game, direction, op))
-		return;
+		return ;
 	if (direction == 'x')
 	{
 		if (op == '-')
@@ -31,12 +31,12 @@ void upt_img_screen(t_game *game, char direction, char op)
 	verify_end_game(game);
 }
 
-void move_player(t_game *game, char pos, char operator)
+void	move_player(t_game *game, char pos, char operator)
 {
-	int32_t x;
+	int32_t	x;
 
 	x = WIDTH_TILE;
-	if (operator== '-')
+	if (operator == '-')
 		x *= -1;
 	if (pos == 'x')
 	{
@@ -50,7 +50,7 @@ void move_player(t_game *game, char pos, char operator)
 	}
 }
 
-void upt_img_side(t_img_data **player_data, char side)
+void	upt_img_side(t_img_data **player_data, char side)
 {
 	if (side == '>')
 	{
