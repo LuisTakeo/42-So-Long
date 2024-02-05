@@ -12,9 +12,9 @@
 
 #include "../includes/so_long_bonus.h"
 
-t_img_data	*insert_img_data(t_game *game, char *img_path)
+t_img_data *insert_img_data(t_game *game, char *img_path)
 {
-	t_img_data	*game_img;
+	t_img_data *game_img;
 
 	game_img = ft_calloc(sizeof(t_img_data), 1);
 	if (!game_img)
@@ -26,7 +26,7 @@ t_img_data	*insert_img_data(t_game *game, char *img_path)
 	if (!(game_img->img))
 	{
 		mlx_delete_texture(game_img->texture);
-		free (game_img);
+		free(game_img);
 		ft_error(game);
 	}
 	game_img->x = 0;
@@ -34,7 +34,7 @@ t_img_data	*insert_img_data(t_game *game, char *img_path)
 	return (game_img);
 }
 
-void	init_values(t_game *game)
+void init_values(t_game *game)
 {
 	game->mlx = NULL;
 	game->wall_data = NULL;
@@ -51,9 +51,10 @@ void	init_values(t_game *game)
 	game->lst_pos = 0;
 	game->max_width_tiles = 0;
 	game->max_height_tiles = 0;
+	game->is_moving = 0;
 }
 
-void	init_player_values(t_game *game)
+void init_player_values(t_game *game)
 {
 	game->player_data[0] = NULL;
 	game->player_data[1] = NULL;
@@ -65,10 +66,10 @@ void	init_player_values(t_game *game)
 	game->player_moves = 0;
 }
 
-void	count_map_size(t_game *game)
+void count_map_size(t_game *game)
 {
-	int32_t	l;
-	int32_t	c;
+	int32_t l;
+	int32_t c;
 
 	l = 0;
 	c = 0;
@@ -80,11 +81,11 @@ void	count_map_size(t_game *game)
 	game->max_height_tiles = l;
 }
 
-void	init_game(t_game *game)
+void init_game(t_game *game)
 {
 	count_map_size(game);
 	game->mlx = mlx_init(WIDTH_TILE * game->max_width_tiles,
-			game->max_height_tiles * HEIGHT_TILE, "so_long", true);
+						 game->max_height_tiles * HEIGHT_TILE, "so_long", true);
 	if (!game->mlx)
 		ft_error(game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);

@@ -13,24 +13,27 @@
 #include "../includes/so_long_bonus.h"
 
 // Exit the program as failure.
-void	ft_error(t_game *game)
+void ft_error(t_game *game)
 {
 	ft_printf("Error!\n%s\n", mlx_strerror(mlx_errno));
 	finish_game(game);
 	exit(EXIT_FAILURE);
 }
 
-void	delete_img_data(t_game *game, t_img_data *img_data)
+void delete_img_data(t_game *game, t_img_data *img_data)
 {
-	mlx_delete_image(game->mlx, img_data->img);
-	mlx_delete_texture(img_data->texture);
+
+	if (img_data->texture)
+		mlx_delete_texture(img_data->texture);
+	if (img_data->img)
+		mlx_delete_image(game->mlx, img_data->img);
 	free(img_data);
 }
 
-void	count_colletibles(t_game *game)
+void count_colletibles(t_game *game)
 {
-	int32_t	c;
-	int32_t	l;
+	int32_t c;
+	int32_t l;
 
 	game->collectibles = 0;
 	l = 0;
@@ -44,9 +47,9 @@ void	count_colletibles(t_game *game)
 	}
 }
 
-int32_t	main(int argc, char **argv)
+int32_t main(int argc, char **argv)
 {
-	t_game	game;
+	t_game game;
 
 	if (argc != 2)
 		return (ft_printf("Quantia de parametros inválida.\n"));
