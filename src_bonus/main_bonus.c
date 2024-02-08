@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 04:24:32 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/05 11:21:01 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:25:02 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	ft_error(t_game *game)
 
 void	delete_img_data(t_game *game, t_img_data *img_data)
 {
-	if (img_data->texture)
-		mlx_delete_texture(img_data->texture);
 	if (img_data->img)
 		mlx_delete_image(game->mlx, img_data->img);
 	free(img_data);

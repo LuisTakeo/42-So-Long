@@ -6,7 +6,7 @@
 /*   By: tpaim-yu <tpaim-yu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:35:15 by tpaim-yu          #+#    #+#             */
-/*   Updated: 2024/02/05 11:22:45 by tpaim-yu         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:36:32 by tpaim-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 t_img_data	*insert_img_data(t_game *game, char *img_path)
 {
-	t_img_data	*game_img;
+	t_img_data		*game_img;
+	mlx_texture_t	*texture;
 
 	game_img = ft_calloc(sizeof(t_img_data), 1);
 	if (!game_img)
 		ft_error(game);
-	game_img->texture = mlx_load_png(img_path);
-	if (!(game_img->texture))
+	texture = mlx_load_png(img_path);
+	if (!texture)
 		ft_error(game);
-	game_img->img = mlx_texture_to_image(game->mlx, game_img->texture);
+	game_img->img = mlx_texture_to_image(game->mlx, texture);
+	mlx_delete_texture(texture);
 	if (!(game_img->img))
 	{
-		mlx_delete_texture(game_img->texture);
 		free(game_img);
 		ft_error(game);
 	}

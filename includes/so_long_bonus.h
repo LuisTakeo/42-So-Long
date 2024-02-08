@@ -26,7 +26,6 @@
 typedef struct s_image_data
 {
 	mlx_image_t		*img;
-	mlx_texture_t	*texture;
 	int32_t			x;
 	int32_t			y;
 }	t_img_data;
